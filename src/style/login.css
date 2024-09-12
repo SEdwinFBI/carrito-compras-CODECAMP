@@ -1,0 +1,36 @@
+section {
+    
+    background: rgb(25,36,27);
+    background: radial-gradient(circle, rgba(25,36,27,1) 0%, rgba(59,163,51,1) 74%);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+   
+    justify-content: center;
+}
+.register{
+    height: 150%;
+}
+
+.efects {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(110, 173, 51);
+    border-radius: 10px;
+    box-shadow: 8px 14px 10px rgb(0, 0, 0);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    margin-top: 4rem;
+    color: black;
+}
+.contenedorRegister{
+    margin-top: 2rem;
+}
+@media (max-width: 450px) {
+    .contenedorRegister{
+        margin-top: 2rem;
+    }
+    .register{
+        height: 110%;
+    }
+}
+
