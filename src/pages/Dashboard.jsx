@@ -5,8 +5,6 @@ import { createTheme } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import HomeIcon from '@mui/icons-material/Home';
-//import BallotIcon from '@mui/icons-material/Ballot';
 import { useEffect, useMemo, useState } from 'react';
 import { CategoryTwoTone as CategorySharp,AddBusiness, Category, Edit, StoreMallDirectory, StoreTwoTone, AddShoppingCart } from '@mui/icons-material';
 import { useAuth } from "../config/AuthContext";
@@ -22,7 +20,8 @@ import OrdenDetalles from '../components/orden/OrdenDetalles';
 import { OrdenProvider } from '../config/OrdenContex';
 import EditarProducto from './EditarProducto';
 import EditarCategoria from './EditarCategoria';
-
+import IconButton from '@mui/material/IconButton';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 /* menu  */
 const NAVIGATION = [
@@ -87,6 +86,15 @@ const NAVIGATION = [
       },
     ],
   },
+  {
+    kind:'divider'
+  },
+  {
+    segment: 'salir',
+    title: 'Deconectarse',
+    icon:<LogoutIcon />
+ 
+  }
 ];
 /**tema de dashoard */
 const demoTheme = createTheme({
@@ -120,6 +128,7 @@ const demoTheme = createTheme({
 function RenderPages({ pathname: pathnameDashboard }) {
   /**contexto */
   const { pathname, setPathname } = useNavegacion()
+  const { logout } = useAuth()
   /**estados */
   const [currPath, setCurrPath] = useState(pathnameDashboard);
   const [asign, setAsing] = useState(false);
@@ -189,9 +198,11 @@ function RenderPages({ pathname: pathnameDashboard }) {
       <EditarCategoria/>
           </>
         );
+        case '/salir':
+          return logout()
     
     default:
-      return <Typography>Dashboard content for {pathnameDashboard}</Typography>;
+      return <Typography>{pathnameDashboard}</Typography>;
   }
 
 }
@@ -237,9 +248,11 @@ function Dashboard() {
         router={router}
         theme={demoTheme}
       >
+        
         <DashboardLayout>
 
           <RenderPages pathname={pathname} />
+          
         </DashboardLayout>
 
       </AppProvider>
