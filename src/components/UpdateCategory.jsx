@@ -26,7 +26,7 @@ const UpdateCategory = () => {
 /**categorai a editar */
     const fetchCategory = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/categoria-productos/${categoriaEditable}`, {
+            const response = await fetch(`http://localhost:3000/categoria-productos/${categoriaEditable}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const UpdateCategory = () => {
     /**lista de estados */
     const fetchEstados = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/estados/`, {
+            const response = await fetch(`http://localhost:3000/estados/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const UpdateCategory = () => {
         try {
             // Asigna fkEstado"
             data.fkEstado = valEstados;
-            const response = await fetch(`http://192.168.0.103:3000/categoria-productos/${categoriaEditable}`, {
+            const response = await fetch(`http://localhost:3000/categoria-productos/${categoriaEditable}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json', 
