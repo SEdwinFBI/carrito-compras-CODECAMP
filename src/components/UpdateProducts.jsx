@@ -28,7 +28,7 @@ const UpdateProducts = () => {
     /**obtener el producto a editar */
     const fetchProduct = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/productos/${productoEditable}`, {
+            const response = await fetch(`http://localhost:3000/productos/${productoEditable}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const UpdateProducts = () => {
     /**obtener estados para la lista de estados  */
     const fetchEstados = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/estados/`, {
+            const response = await fetch(`http://localhost:3000/estados/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const UpdateProducts = () => {
     /**obtener la lista de categorias */
     const fetchCategorias = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/categoria-productos/`, {
+            const response = await fetch(`http://localhost:3000/categoria-productos/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ const UpdateProducts = () => {
             formData.append('stock', data.stock);
             formData.append('foto', data.foto);
 
-            const response = await fetch(`http://192.168.0.103:3000/productos/${productoEditable}`, {
+            const response = await fetch(`http://localhost:3000/productos/${productoEditable}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`
