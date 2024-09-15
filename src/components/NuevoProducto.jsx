@@ -27,7 +27,7 @@ const NuevoProducto = () => {
 
     const fetchEstados = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/estados/`, {
+            const response = await fetch(`http://localhost:3000/estados/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const NuevoProducto = () => {
 
     const fetchCategorias = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/categoria-productos/`, {
+            const response = await fetch(`http://localhost:3000/categoria-productos/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ const NuevoProducto = () => {
             formData.append('foto', data.foto);
 
             console.log(formData, "formdata")
-            const response = await fetch(`http://192.168.0.103:3000/productos/`, {
+            const response = await fetch(`http://localhost:3000/productos/`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
