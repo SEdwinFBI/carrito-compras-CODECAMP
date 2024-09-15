@@ -35,7 +35,7 @@ const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, tota
             console.log(valEstados)
           
 
-            const response = await fetch(`http://192.168.0.103:3000/orden/${idOrden}`, {
+            const response = await fetch(`http://localhost:3000/orden/${idOrden}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
