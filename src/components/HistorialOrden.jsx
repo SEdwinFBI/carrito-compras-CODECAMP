@@ -18,7 +18,7 @@ const HistorialCliente = () => {
 
     const fetchOrdenes = async () => {
         try {
-            const response = await fetch('http://192.168.0.103:3000/orden/historial', {
+            const response = await fetch('http://localhost:3000/orden/historial', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
