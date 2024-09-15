@@ -13,7 +13,7 @@ const HistorialDetalle = () => {
 
     const fetchOrdenDetalle = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/Orden/detalles/${ordenCliente}`, {
+            const response = await fetch(`http://localhost:3000/Orden/detalles/${ordenCliente}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const HistorialDetalle = () => {
 
     const fetchOrdenEncabezado = async () => {
         try {
-            const response = await fetch(`http://192.168.0.103:3000/Orden/${ordenCliente}`, {
+            const response = await fetch(`http://localhost:3000/Orden/${ordenCliente}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
