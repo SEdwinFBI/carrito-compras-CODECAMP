@@ -98,7 +98,7 @@ const getFecha = (date) => {
     const telefonoCompleto = data.codigo+" "+ data.telefono;
     data.telefono = telefonoCompleto;
     try {
-      const response = await fetch('http://192.168.0.103:3000/orden', {
+      const response = await fetch('http://localhost:3000/orden', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
