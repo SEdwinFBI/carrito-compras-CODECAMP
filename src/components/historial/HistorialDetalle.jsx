@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useOrden } from '../../config/OrdenContex';
 import { useAuth } from '../../config/AuthContext';
-import { List, ListItem, Grid2, Typography, Box, Container } from '@mui/material';
+import { List, ListItem, Grid2, Typography, Box, Container,Button } from '@mui/material';
 import Detalle from '../Detalle';
+import { useNavigate } from 'react-router-dom';
 
 const HistorialDetalle = () => {
     const { token, logout } = useAuth();
+    const navigate = useNavigate()
     const { ordenCliente } = useOrden();
 
     const [ordenDetalle, setOrdenDetalle] = useState([]);
@@ -78,7 +80,15 @@ const HistorialDetalle = () => {
 
     return (
         <Container>
-           
+             <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" ,mt:3}}>
+
+            <Button
+                type="submit"
+                onClick={()=>navigate('/inicio/historial')}
+                variant="contained" >
+                volver
+            </Button>
+             </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
         
             <Typography variant="h3">Datos del Pedido</Typography>

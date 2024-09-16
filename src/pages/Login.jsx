@@ -71,7 +71,8 @@ export const Login = () => {
 
     } catch (error) {
       setTipo('error')
-      setMensaje("error interno")
+      console.log(error)
+      setMensaje("error interno"+error)
     }
 
     console.log(data);

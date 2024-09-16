@@ -15,7 +15,7 @@ const Products = () => {
   /**fetcha para obtener los productos */
   const fetchProduct = async () => {
     try {
-      const response = await fetch('http://192.168.0.103:3000/productos', {
+      const response = await fetch('http://localhost:3000/productos', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
