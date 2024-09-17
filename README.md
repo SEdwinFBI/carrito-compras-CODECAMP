@@ -19,7 +19,7 @@ javascript, CSS, HTML, React js, Express js, Node js, Material UI, Microsoft SQL
 ### Login
 ![captura](/public/screenshots/login.png)
 ## 🛠 Manejo de:
-auth, JWT, Roles, Encriptacion de contraseña
+### Auth, JWT, Roles, Encriptacion de contraseña
 
 
 
