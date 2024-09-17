@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 /**vista de orden completa */
 const Orden = () => {
+  //uso de rutas
   const navigate = useNavigate()
+  
   const { productoSeleccionado, setProductoSelecionado } = useDetalles()
   const [productos, setProductos] = useState(0);
 

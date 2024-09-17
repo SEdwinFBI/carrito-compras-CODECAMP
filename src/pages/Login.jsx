@@ -142,7 +142,7 @@ export const Login = () => {
               <Grid container>
                 <Grid item>
                   <Link href="register" variant="body2">
-                    {"¿No tienes Cuentas"}
+                    {"¿No tienes Cuenta"}
                   </Link>
                 </Grid>
               </Grid>

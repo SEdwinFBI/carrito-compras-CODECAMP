@@ -93,6 +93,7 @@ const ProductCard = ({ idProducto, nombre, marca, codigo, stock, precio, estado,
               { mb: 1, ml: 1 }
             }
               onClick={() => {
+                //no se uso router , porque es dentro del dashboard
                 setPathname('/productos/edit')
                 setProductoEditable(idProducto);
 

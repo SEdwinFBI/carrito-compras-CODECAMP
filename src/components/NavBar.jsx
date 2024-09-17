@@ -16,7 +16,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth } from '../config/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDetalles } from '../config/DetallesContext';
 import { useEffect, useState } from 'react';
 
@@ -64,6 +64,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = ({ position }) => {
+  const navigate = useNavigate();
+
   const {productoSeleccionado}=useDetalles();
   console.log(productoSeleccionado.length,"tamaño")
   const [productos,setProductos]=useState(0);
@@ -136,26 +138,37 @@ useEffect(()=>{
       onClose={handleMobileMenuClose}
     >
       {/* item carrito*/}
-      <Link to="/inicio/detalles" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleMobileMenuClose}>
-        <MenuItem>
+     
+        <MenuItem
+        onClick={()=>{
+          //uso de switch route
+          navigate("/inicio/detalles")
+          handleMobileMenuClose()
+         }}>
 
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <IconButton size="large" aria-label="carrito" color="inherit"
+          >
             <Badge badgeContent={productos} color="error">
-              <ShoppingCartIcon />{/*Email */}
+              <ShoppingCartIcon />{/*carrito */}
             </Badge>
           </IconButton>
 
           <p>Carrito Mobile</p>
         </MenuItem>
-      </Link>
+     
       {/* item historial*/}
-      <Link to="/inicio/historial" style={{ textDecoration: 'none', color: 'inherit' }}onClick={handleMobileMenuClose}>
-        <MenuItem>
+     
+        <MenuItem onClick = {()=>{
+          //uso de switch route
+              navigate("/inicio/historial");
+              handleMobileMenuClose();
+            }}>
 
           <IconButton
             size="large"
             aria-label="Historial"
             color="inherit"
+            
           >
             <Badge badgeContent={0} color="error">
               <ManageSearchIcon />
@@ -165,7 +178,7 @@ useEffect(()=>{
 
           <p>Historial</p>
         </MenuItem>
-      </Link>
+  
       {/* item salir*/}
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -217,25 +230,26 @@ useEffect(()=>{
           <Box sx={{ flexGrow: 1 }} />{/* opciones a la derecha */}
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>{/*opciones desabilitadas mobil*/}
             {/*boton carrito */}
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Link to="/inicio/detalles" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit"
+            onClick={()=>navigate("/inicio/detalles")}>
+            
                 <Badge badgeContent={productos} color="error">
                   <ShoppingCartIcon />
                 </Badge>
-              </Link>
+             
             </IconButton>
             {/*boton historial */}
             <IconButton
               size="large"
               color="inherit"
-
+            onClick={()=>navigate("/inicio/historial")}
             >
-              <Link to="/inicio/historial" style={{ textDecoration: 'none', color: 'inherit' }}>
+             
                 <Badge badgeContent={0} color="error">
                   <ManageSearchIcon />
 
                 </Badge>
-              </Link>
+             
             </IconButton>
             {/*boton salir */}
             <IconButton
