@@ -14,6 +14,8 @@ javascript, CSS, HTML, React js, Express js, Node js, Material UI, Microsoft SQL
 ![captura](/public/screenshots/vistaHistorial.png)
 ### Detalles de Historial
 ![captura](/public/screenshots/vistaHistorialDetalle.png)
+### Dashboard de Graficas
+![captura](/public/screenshots/Graficos.png)
 ### Dashboard de Administrador
 ![captura](/public/screenshots/Dashboard.png)
 ### Login
