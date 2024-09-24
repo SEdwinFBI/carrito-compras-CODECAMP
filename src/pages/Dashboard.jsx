@@ -23,6 +23,9 @@ import EditarCategoria from './EditarCategoria';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Box, Container, Grid2 } from '@mui/material';
+import {  Graphics } from '../graficos/Graficos';
+import AssessmentTwoToneIcon from '@mui/icons-material/AssessmentTwoTone';
+
 
 /* menu  */
 const NAVIGATION = [
@@ -31,10 +34,16 @@ const NAVIGATION = [
     title: 'Principal',
   },
   {
+    segment: 'graficos',
+    title: 'Graficos',
+    icon: <AssessmentTwoToneIcon />,
+  },
+  {
     segment: 'ordenes',
     title: 'Ordenes',
     icon: <ShoppingCartIcon />,
   },
+  
   {
     kind: 'divider',
   },
@@ -184,6 +193,7 @@ function Dashboard() {
           <DashboardLayout />
           {/**para evitar cargar nuevamente la pagina */}
           <Routes>
+          <Route path="/" element={<OrdenEditables />} />
             <Route path="/ordenes" element={<OrdenEditables />} />
             <Route path="/ordenes/detalle" element={<OrdenDetalles />} />
             <Route path="/productos/allProducts" element={<ProductsDashboard />} />
@@ -192,6 +202,7 @@ function Dashboard() {
             <Route path="/categoria-productos/categorias" element={<CategoryDashboard />} />
             <Route path="/categoria-productos/crear" element={<NuevaCategoria />} />
             <Route path="/categoria-productos/edit" element={<EditarCategoria />} />
+            <Route path="/graficos" element={<Graphics/>} />
           </Routes>
           {/**renderizacion de las pestañas */}
           <PageContent pathname={pathname} />

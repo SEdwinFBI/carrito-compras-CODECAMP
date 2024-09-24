@@ -201,7 +201,7 @@ const NuevoProducto = () => {
     }, [errors]);
     
     if (isLoading) {
-        return <CircularProgress color="success" />;
+        return <Box sx={{width:{md:600,lg:900}, ml:{lg:40,md:40} }}> <CircularProgress color="success" /></Box>;
     }
 
     return (
