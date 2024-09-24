@@ -50,7 +50,11 @@ const CategoryEditable = () => {
                     justifyContent: "space-evenly",
                     mt: 4,
                     mb: 2,
-                    ml: 1
+                    ml: {
+                        sx:1,
+                        md:40,
+                        lg:40
+                    }
                 }}
                 >
 

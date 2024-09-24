@@ -3,10 +3,12 @@ import { useEffect, useState } from "react"
 import { Grow } from '@mui/material';
 import { useDetalles } from "../config/DetallesContext";
 import { useNavegacion } from "../config/NaveContexto";
+import { useNavigate } from "react-router-dom";
 
 /**card producto */
 const ProductCard = ({ idProducto, nombre, marca, codigo, stock, precio, estado, categoria, foto, time, editable }) => {
 
+  const navigate=useNavigate()
   //contexto navegacion
   const { setPathname, setProductoEditable } = useNavegacion()
   //contexto Detalles
@@ -94,7 +96,7 @@ const ProductCard = ({ idProducto, nombre, marca, codigo, stock, precio, estado,
             }
               onClick={() => {
                 //no se uso router , porque es dentro del dashboard
-                setPathname('/productos/edit')
+                navigate('/dashboard/productos/edit')
                 setProductoEditable(idProducto);
 
               }}>

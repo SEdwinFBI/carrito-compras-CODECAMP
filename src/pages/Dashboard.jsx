@@ -6,9 +6,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { useEffect, useMemo, useState } from 'react';
-import { CategoryTwoTone as CategorySharp,AddBusiness, Category, Edit, StoreMallDirectory, StoreTwoTone, AddShoppingCart } from '@mui/icons-material';
+import { CategoryTwoTone as CategorySharp, AddBusiness, Category, Edit, StoreMallDirectory, StoreTwoTone, AddShoppingCart } from '@mui/icons-material';
 import { useAuth } from "../config/AuthContext";
-import { useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes, useNavigate } from 'react-router-dom';
 import ProductsDashboard from '../components/ProductsDashboard';
 import { useNavegacion } from '../config/NaveContexto';
 import { NavigationProvider } from '../config/NaveContexto'
@@ -22,6 +22,7 @@ import EditarProducto from './EditarProducto';
 import EditarCategoria from './EditarCategoria';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Box, Container, Grid2 } from '@mui/material';
 
 /* menu  */
 const NAVIGATION = [
@@ -40,8 +41,9 @@ const NAVIGATION = [
   {
     kind: 'header',
     title: 'Herramientas',
+
   },
-  
+
   {
     segment: 'productos',
     title: 'Productos',
@@ -87,13 +89,13 @@ const NAVIGATION = [
     ],
   },
   {
-    kind:'divider'
+    kind: 'divider'
   },
   {
     segment: 'salir',
     title: 'Deconectarse',
-    icon:<LogoutIcon />
- 
+    icon: <LogoutIcon />
+
   }
 ];
 /**tema de dashoard */
@@ -124,92 +126,22 @@ const demoTheme = createTheme({
 });
 
 
-
-function RenderPages({ pathname: pathnameDashboard }) {
-  /**contexto */
-  const { pathname, setPathname } = useNavegacion()
+function PageContent({ pathname }) {
   const { logout } = useAuth()
-  /**estados */
-  const [currPath, setCurrPath] = useState(pathnameDashboard);
-  const [asign, setAsing] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    if (pathname != "" && !asign) {
-      console.log(pathname)
-      setCurrPath(pathname)
-      setAsing(true)
-    }else {
-      if(asign){
-        setPathname("")
-        setAsing(false)
+    if (pathname == '/salir') return logout();
 
-      }
-      setCurrPath(pathnameDashboard)
-    }
-    
-  }, [pathname,pathnameDashboard])
-
-  /**renderizacion de componentes */
-  switch (currPath) {
-    case '/dashboard':
-      return <OrdenEditables/>
-
-      case '/ordenes':
-      return (<>
-        <OrdenEditables/>
-      </>);
-       case '/ordenes/detalle':
-        return (<>
-          <OrdenDetalles/>
-        </>);
-
-      case '/productos/allProducts':
-      return <ProductsDashboard />
-      case '/productos/edit':
-        return (
-          <>
-         
-          <EditarProducto/>
-          </>
-        );
-        case '/categoria-productos/categorias':
-        return (
-          <>
-           <CategoryDashboard/>
-          
-          </>
-        );
-        
-        case '/productos/crear':
-        return (
-          <>
-            <NuevoProducto/>
-          </>
-        );
-        case '/categoria-productos/crear':
-        return (
-          <>
-         <NuevaCategoria/>
-          </>
-        );
-        case '/categoria-productos/edit':
-        return (
-          <>
-      <EditarCategoria/>
-          </>
-        );
-        case '/salir':
-          return logout()
-    
-    default:
-      return <Typography>{pathnameDashboard}</Typography>;
-  }
+    return navigate(`/dashboard${pathname}`)
+  }, [pathname])
 
 }
 
-RenderPages.propTypes = {
+PageContent.propTypes = {
+  navigate: PropTypes.func.isRequired,
   pathname: PropTypes.string.isRequired,
 };
+
 
 function Dashboard() {
   /**navegacion */
@@ -219,12 +151,13 @@ function Dashboard() {
 
   useEffect(() => {
     if (!token) return navigate('/login')
-      
+
   }, [navigate, token])
 
-/**ruta inicial */
-  const [pathname, setPathname] = useState('/dashboard');
-/**uso de rutas */
+  /**ruta inicial */
+  const [pathname, setPathname] = useState('/');
+
+  /**uso de rutas */
   const router = useMemo(() => {
     return {
       pathname,
@@ -234,31 +167,38 @@ function Dashboard() {
   }, [pathname]);
 
   return (
-    
+
 
     token &&
     <NavigationProvider>
       <OrdenProvider>
-      <AppProvider
-        branding={{
-          logo: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58f__Hs5QwGWIEcsawDwW1o5IQzaYNPONhQ&s" alt="MUI logo" />,
-          title: 'Codecamp',
-        }}
-        navigation={NAVIGATION}
-        router={router}
-        theme={demoTheme}
-      >
-        
-        <DashboardLayout>
-
-          <RenderPages pathname={pathname} />
-          
-        </DashboardLayout>
-
-      </AppProvider>
+        <AppProvider
+          branding={{
+            logo: <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ58f__Hs5QwGWIEcsawDwW1o5IQzaYNPONhQ&s" alt="MUI logo" />,
+            title: 'Codecamp',
+          }}
+          navigation={NAVIGATION}
+          router={router}
+          theme={demoTheme}
+        >
+          <DashboardLayout />
+          {/**para evitar cargar nuevamente la pagina */}
+          <Routes>
+            <Route path="/ordenes" element={<OrdenEditables />} />
+            <Route path="/ordenes/detalle" element={<OrdenDetalles />} />
+            <Route path="/productos/allProducts" element={<ProductsDashboard />} />
+            <Route path='/productos/edit' element={<EditarProducto />} />
+            <Route path='/productos/crear' element={<NuevoProducto />} />
+            <Route path="/categoria-productos/categorias" element={<CategoryDashboard />} />
+            <Route path="/categoria-productos/crear" element={<NuevaCategoria />} />
+            <Route path="/categoria-productos/edit" element={<EditarCategoria />} />
+          </Routes>
+          {/**renderizacion de las pestañas */}
+          <PageContent pathname={pathname} />
+        </AppProvider>
       </OrdenProvider>
     </NavigationProvider>
-    
+
   );
 }
 

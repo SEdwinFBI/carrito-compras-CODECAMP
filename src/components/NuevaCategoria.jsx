@@ -105,7 +105,7 @@ const NuevaCategoria = () => {
         } catch (error) {
             console.error('Error al enviar los datos:', error);
             setTipo('error');
-            setMensaje("Error interno");
+            setMensaje("Error al crear la Categoria");
         }
         
         console.log(data);
@@ -131,12 +131,12 @@ const NuevaCategoria = () => {
     }, [isLoading, estados]);
 
     if (isLoading) {
-        return <CircularProgress color="success" />;
+        return <Box sx={{width:{md:600,lg:900}, ml:{lg:40,md:40} }}> <CircularProgress color="success" /></Box>;
     }
 
     return (
         token && (
-            <Container sx={{ mt: 3 }}>
+            <Container sx={{ mt: 3,width:{md:600,lg:900}, ml:{lg:40,md:40} }}>
                 <Notificacion tipo={tipo} info={mensaje} onOpen={info}
                     onClose={() => setInfo(false)} />
 

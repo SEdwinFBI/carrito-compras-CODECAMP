@@ -61,6 +61,8 @@ export const Register = () => {
       .required("El código de país es requerido"),
     telefono: yup
       .string()
+      .length(8, "El número de teléfono debe tener 8 dígitos")
+      .matches(/^\d+$/, "El número de teléfono solo debe contener dígitos")
       .required("El número de teléfono es requerido"),
     direccion: yup
       .string()
@@ -233,21 +235,23 @@ export const Register = () => {
                     >
 
                       <MenuItem value={502}>Guatemala</MenuItem>
-                      <MenuItem value={52}>Mexico</MenuItem>
                       <MenuItem value={503}>El Salvador</MenuItem>
                       <MenuItem value={504}>Honduras</MenuItem>
                       <MenuItem value={505}>Nicaragua</MenuItem>
+                      <MenuItem value={591}>Bolivia</MenuItem>
                     </Select>
                   </FormControl>
                 </Box>
                 {/**telefono */}
                 <TextField
+
                   margin="normal"
                   required
                   sx={{ width: 225, ml: 2 }}
                   name="telefono"
-                  label={errors.telefono ? "Numero de telefono requerido" : "Telefono"}
-                  color={errors.telefono && "error"}
+                  label="Numero de telefono"
+                  helperText={errors.telefono && errors.telefono.message}
+
                   type="tel"
                   {...register("telefono")}
                   error={!!errors.telefono}
@@ -267,7 +271,7 @@ export const Register = () => {
                   required: true
                 })}
               />
-              <Box sx={{ display: "flex", minWidth: 148, height: 48, mt: 1,mb:2 }} >
+              <Box sx={{ display: "flex", minWidth: 148, height: 48, mt: 1, mb: 2 }} >
                 {/**fecha */}
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                   <DatePicker
@@ -290,7 +294,7 @@ export const Register = () => {
                   error={!!errors.fkRol}
                   {...register("fkRol", {
                     required: true,
-                  
+
                   })}
                 />
               </Box>

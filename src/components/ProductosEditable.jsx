@@ -49,7 +49,11 @@ const ProductsEditable = () => {
                     justifyContent: "space-evenly",
                     mt: 4,
                     mb: 2,
-                    ml:1
+                    ml: {
+                      xs: 1,
+                      md: 40,
+                      lg: 40
+                    }
                 }}
                 >
                     {product.map((prod)=>(<ProductCard 

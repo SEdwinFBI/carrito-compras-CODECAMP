@@ -11,7 +11,7 @@ import * as yup from "yup";
 import { useAuth } from "../../config/AuthContext";
 
 const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, total, fkUsuarioNombre, time, editable }) => {
-
+    
     const { token } = useAuth();
     const [valEstados, setVaEstados] = useState(0);
     const [update, setUpdate] = useState(false);
@@ -69,6 +69,7 @@ const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, tota
                 display: 'flex',
                 height: { xs: 250, sm: 160 },
                 width: { xs: 330, sm: 650 },
+                
                 justifyContent: "space-between"
             }}>
                 <CardMedia
@@ -103,7 +104,7 @@ const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, tota
 
                     <Button variant="contained" onClick={() => {
                         if (editable) {
-                            setPathname("/ordenes/detalle");
+                            navigate("/dashboard/ordenes/detalle");
                             setOrdenCliente(idOrden);
                         } else {
                             navigate('/inicio/historial/detalles');

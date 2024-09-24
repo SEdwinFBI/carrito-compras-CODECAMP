@@ -1,11 +1,12 @@
 import {  Button, Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material"
 import {  Grow } from '@mui/material';
 import { useNavegacion } from "../config/NaveContexto";
+import { useNavigate } from "react-router-dom";
 
 const CategoryCard = ({ idCategoriaProducto, nombre, estado, fecha_creacion,editable,time}) => {
   
   const {setPathname,setCategoriaEditable} =useNavegacion()
-
+  const navigate =useNavigate();
 
   return (
     <>
@@ -51,7 +52,7 @@ const CategoryCard = ({ idCategoriaProducto, nombre, estado, fecha_creacion,edit
             { mb: 1, ml: 1 }
           }
             onClick={()=>{
-              setPathname('/categoria-productos/edit')
+              navigate('/dashboard/categoria-productos/edit')
               setCategoriaEditable(idCategoriaProducto);
            
               }}>

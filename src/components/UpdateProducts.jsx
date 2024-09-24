@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Notificacion } from './AlertasPersonalizadas';
+import { useNavigate } from 'react-router-dom';
 
 /**actualizar productos */
 const UpdateProducts = () => {
     /**contextos */
+    const navigate=useNavigate()
     const { productoEditable, setProductoEditable, setPathname } = useNavegacion();
     const { token, logout } = useAuth();
     /**estados */
@@ -242,21 +244,23 @@ const UpdateProducts = () => {
     }, [isLoading, product, categorias, estados]);
 
     if (isLoading) {
-        return <CircularProgress color="success" />;
+        return <Box sx={{ml:40}}>
+            <CircularProgress color="success" />;
+        </Box>
     }
 
     return (
         token && (
-            <Container maxWidth="sx" sx={{ mt: 3 ,background:"white"}}>
+            <Container maxWidth="sx" sx={{ mt: 3 ,background:"white",width:{md:600,lg:900}, ml:{lg:40,md:40}}}>
                 <Notificacion tipo={tipo} info={mensaje} onOpen={info}
                     onClose={() => setInfo(false)} />
                 {/**botones */}
-                <Button onClick={() => { setPathname('/productos/allProducts') }}>
+                <Button onClick={() => { navigate('/dashboard/productos/allProducts') }}>
                     Volver
                 </Button>
                 <Button onClick={() => {
                     setProductoEditable(null)
-                    setPathname('/productos/allProducts')
+                    navigate('/dashboard/productos/allProducts')
                 }} >
                     cancelar
                 </Button>

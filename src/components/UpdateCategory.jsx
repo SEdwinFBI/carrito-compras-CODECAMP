@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { Notificacion } from './AlertasPersonalizadas';
+import { useNavigate } from 'react-router-dom';
 
 /**actualizar categoria */
 const UpdateCategory = () => {
     /**contextos */
+   const navigate = useNavigate();
     const { categoriaEditable, setCategoriaEditable, setPathname } = useNavegacion();
     const { token, logout } = useAuth();
     /**estdos */
@@ -119,7 +121,7 @@ const UpdateCategory = () => {
                 setTipo('success');
                 setMensaje(result.mensaje);
                 setTimeout(() => {
-                    setPathname('/categoria-productos/categorias');
+                    navigate('/dashboard/categoria-productos/categorias');
                     setCategoriaEditable(null);
                 }, 2000);
             } else {
@@ -159,20 +161,20 @@ const UpdateCategory = () => {
     }, [isLoading, categoria, estados]);
 
     if (isLoading) {
-        return <CircularProgress color="success" />;
+        return <Box sx={{width:{md:600,lg:900}, ml:{lg:40,md:40} }}> <CircularProgress color="success" /></Box>;
     }
 
     return (
         token && (
-            <Container sx={{ mt:3,background:"white" }}>
+            <Container sx={{ mt:3,background:"white",width:{md:600,lg:900}, ml:{lg:40,md:40} }}>
                 <Notificacion tipo={tipo} info={mensaje} onOpen={info}
                     onClose={() => setInfo(false)} />
-                <Button onClick={() => { setPathname('/categoria-productos/categorias') }}>
+                <Button onClick={() => { navigate('/dashboard/categoria-productos/categorias') }}>
                     Volver
                 </Button>
                 <Button onClick={() => {
                     setCategoriaEditable(null)
-                    setPathname('/categoria-productos/categorias')
+                    navigate('/dashboard/categoria-productos/categorias')
                 }} >
                     cancelar
                 </Button>

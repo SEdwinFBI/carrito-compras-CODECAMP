@@ -48,12 +48,16 @@ const OrdenEditables = () => {
         token && <>
             <Container >
           
-                <Grid2 container spacing={{ xs: 1.5, md: 3 }} sx={{
+                <Grid2 container  spacing={{ xs: 1.5, md: 3 }} sx={{
                     display: "flex",
                     justifyContent: "space-evenly",
                     mt: 4,
                     mb: 2,
-                    ml: 1
+                    ml: {
+                        xs: 1,
+                        md: 40,
+                        lg: 40
+                      }
                 }}
                 >
                     {ordenes

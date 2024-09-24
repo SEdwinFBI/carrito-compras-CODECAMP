@@ -4,11 +4,14 @@ import { useAuth } from '../../config/AuthContext';
 import { List, ListItem, Grid2, Typography, Box, Container, Button } from '@mui/material';
 import Detalle from '../Detalle';
 import { useNavegacion } from '../../config/NaveContexto';
+import { useNavigate } from 'react-router-dom';
+
 
 const OrdenDetalles = () => {
+    const navigate = useNavigate();
     const { token, logout } = useAuth();
     const { ordenCliente } = useOrden();
-const {setPathname}=useNavegacion();
+    const { setPathname } = useNavegacion();
     const [ordenDetalle, setOrdenDetalle] = useState([]);
     const [ordenEncabezado, setOrdenEncabezado] = useState([]);
 
@@ -78,10 +81,15 @@ const {setPathname}=useNavegacion();
     }, [token]);
 
     return (
-        <Container sx={{ mt: 3 }}>
+        <Container sx={{
+            mt: 3, width: {
+                md: 540,
+                lg: 900
+            }, ml: { md: 40, lg: 40 }
+        }}>
             <Button
                 type="submit"
-                onClick={()=>setPathname('/ordenes')}
+                onClick={() => navigate('/dashboard/ordenes')}
                 variant="contained" >
                 volver
             </Button>

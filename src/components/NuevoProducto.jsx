@@ -206,7 +206,7 @@ const NuevoProducto = () => {
 
     return (
         token && (
-            <Container sx={{ mt: 3 }}>
+            <Container sx={{ mt: 3 ,width:{md:600,lg:900}, ml:{lg:40,md:40}}}>
                 <Notificacion tipo={tipo} info={mensaje} onOpen={info}
                     onClose={() => setInfo(false)} />
                 
