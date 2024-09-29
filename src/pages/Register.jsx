@@ -15,15 +15,19 @@ import { Notificacion } from "../components/AlertasPersonalizadas";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useNavigate } from "react-router-dom";
 
 
 
 export const Register = () => {
+  const navigate=useNavigate()
   /**estados */
+  
   const [info, setInfo] = useState(false);
   const [tipo, setTipo] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [codigo, setCodigo] = useState('');
+  const [rol, setRol] = useState(2);
 
   /**para formatear la fecha */
   const getFecha = (date) => {
@@ -282,21 +286,28 @@ export const Register = () => {
                   />
                 </LocalizationProvider>
                 {/**rol */}
-                <TextField
-                  helperText={errors.fkRol && errors.fkRol.message}
-
-                  required
-                  type="number"
-                  sx={{ width: 225, ml: 2 }}
-                  label="rol"
-                  autoFocus
-                  inputProps={{ min: 1, max: 2 }}
-                  error={!!errors.fkRol}
-                  {...register("fkRol", {
-                    required: true,
-
-                  })}
-                />
+                <FormControl sx={{ml:1, width:150}} >
+                  <InputLabel id="select-rol">Rol</InputLabel>
+                  <Select
+                    helperText={(errors.fkRol && errors.fkRol.message) || ""}
+                    {...register("fkRol")}
+                    id="select-rol"
+                    margin="normal"
+                    value={rol}
+                    label="Rol"
+                    required
+                    error={!!errors.fkRol}
+                  >
+                      <MenuItem  value={1} onClick={()=>setRol(1)}>
+                        Administrador
+                      </MenuItem>
+                      <MenuItem  value={2} onClick={()=>setRol(2)}>
+                       Usuario
+                      </MenuItem>
+                   
+                  </Select>
+                </FormControl>
+               
               </Box>
               {/**registrarse  */}
               <Button
@@ -310,7 +321,7 @@ export const Register = () => {
               <Grid container>
 
                 <Grid item>
-                  <Link href="/login" variant="body2">
+                  <Link  variant="body2" href="/login">
                     {"¿Tienes Cuenta?"}
                   </Link>
                 </Grid>

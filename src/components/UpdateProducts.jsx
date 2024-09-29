@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const UpdateProducts = () => {
     /**contextos */
     const navigate=useNavigate()
-    const { productoEditable, setProductoEditable, setPathname } = useNavegacion();
+    const { productoEditable, setProductoEditable } = useNavegacion();
     const { token, logout } = useAuth();
     /**estados */
     const [product, setProduct] = useState([]);
@@ -187,7 +187,7 @@ const UpdateProducts = () => {
                 setTipo('success');
                 setMensaje(result.mensaje);
                 setTimeout(() => {
-                    setPathname('/productos/allProducts');
+                    navigate('/dashboard/productos/allProducts');
                     setProductoEditable(null);
                 }, 2000);
 
@@ -285,7 +285,7 @@ const UpdateProducts = () => {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                onClick={()=>setFileName("")} >
+                                onClick={()=>  setFileName("")}  >
                                 Aceptar
                             </Button>
                             <TextField

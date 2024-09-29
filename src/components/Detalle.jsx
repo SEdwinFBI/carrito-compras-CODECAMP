@@ -22,7 +22,7 @@ const Detalle = ({ idProducto, nombre, marca, precio, stock, foto, time ,cantida
         setPrecioT(precio * cantidad);
         
         sessionStorage.setItem(`precioTotalDetalle_${idProducto}`, precioTotal);
-        console.log(sessionStorage.getItem(`precioTotalDetalle_${idProducto}`),"detalle")
+      
         //setPrecioTotal(precioTotal)
         setCambio(cantidad);
     }, [cantidad, idProducto,precio,precioTotal]);

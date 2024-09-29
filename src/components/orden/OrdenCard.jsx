@@ -12,7 +12,7 @@ import { useAuth } from "../../config/AuthContext";
 
 const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, total, fkUsuarioNombre, time, editable }) => {
     
-    const { token } = useAuth();
+    const { token,logout } = useAuth();
     const [valEstados, setVaEstados] = useState(0);
     const [update, setUpdate] = useState(false);
     const { setPathname } = useNavegacion();
@@ -32,7 +32,7 @@ const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, tota
 
     const onSubmit = async (data) => {
         try {
-            console.log(valEstados)
+  
           
 
             const response = await fetch(`http://localhost:3000/orden/${idOrden}`, {
@@ -43,14 +43,13 @@ const OrdenCard = ({ idOrden, nombre, nombreUser, direccion, fecha_entrega, tota
                 },
                 body: JSON.stringify({ fkEstado: valEstados })
             });
-
+            if(response.status == 409){
+                logout();
+            }
             const result = await response.json();
 
-            if (response.ok) {
-                console.log(result.mensaje);
-            } else {
-                console.log(result.mensaje);
-            }
+            
+            
         } catch (error) {
             console.error('Error al enviar los datos:', error);
         }

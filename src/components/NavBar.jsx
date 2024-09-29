@@ -218,15 +218,15 @@ useEffect(()=>{
           >
             CODECAMP
           </Typography>
-          <Search>
-            <IconoBusqueda>{/*estilos busqueda */}
+          {/**<Search>
+            <IconoBusqueda>{//estilos busqueda }
               <SearchIcon />
             </IconoBusqueda>
             <StyledInputBase
               placeholder="Buscar..."
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />{/* opciones a la derecha */}
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>{/*opciones desabilitadas mobil*/}
             {/*boton carrito */}
